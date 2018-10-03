@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Language Detector</title>
+    <link href="https://fonts.googleapis.com/css?family=Noto+Serif+JP" rel="stylesheet">
+</head>
+
+<body>
+    <iframe src="https://giphy.com/embed/wypXxlLUpzp7O" width="480" height="270" frameBorder="0" class="giphy-embed"
+        allowFullScreen></iframe>
+    <p><a href="https://giphy.com/gifs/channelfrederator-animation-channel-frederator-cartoons-wypXxlLUpzp7O"></a></p>
+    <h1>I am a language detector</h1>
+    <p id="content"></p>
+
+    <style type="text/css">
+        body {
+            font-family: 'Noto Serif JP', sans-serif;
+            text-align: center;
+        }
+        h2 {
+            color: darkblue;
+        }
+        p {
+            color: darkblue;
+            font-weight: bold;
+        }
+        h1 {
+            text-align: center;
+        }
+    </style>
+
+
+    <script type="text/javascript">
+        function append(parent, el) {
+            return parent.appendChild(el);
+        }
+        const url =
+            "http://apilayer.net/api/detect?access_key=008b882bc469731393a0753a43a30769&query=This%20is%20a%20message%20for%20testing."
+        const answer = document.getElementById('content');
+        fetch(url)
+            .then((resp) => resp.json())
+            .then(function (detected) {
+                let data = detected.results;
+                return data.map(function (info) {
+                    let h2 = document.createElement('h2');
+                    p = document.createElement('p');
+                    h2.innerHTML = "Hi! I think the language of your input is " + info.language_name + ".";
+                    p.innerHTML = "I am " + info.probability + " percent sure about my answer."
+                    append(answer, h2);
+                    append(answer, p);
+                })
+            })
+        // this is my first try that did not work
+        // function createNode(element) {
+        // 	return document.createElement(element);
+        // }
+        // const url = "https://picsum.photos/list";
+        // const ul = document.getElementById('image');
+        // fetch(url)
+        // .then((resp) => resp.json())
+        // .then(function(data){
+        // 	return data.map(function(pic){
+        // 		let img = createNode('img');
+        // 		img.src = pic.post_url;
+        // 	})
+        // })
+        .catch(function(error){
+        	console.log(error);
+    </script>
+
+
+</body>
+
+</html>
